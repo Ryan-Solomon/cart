@@ -7,9 +7,12 @@ import React, {
 } from 'react';
 import { TCartItem } from '../types/types';
 import { reducer } from './reducer';
+import { ActionEnum } from '../types/types';
 
 type InitialContext = {
   cartItems: TCartItem[];
+  addItem: (id: string) => void;
+  removeItem: (id: string) => void;
 };
 
 export type State = {
@@ -23,13 +26,22 @@ const initialState: State = {
 const AppContext = createContext<InitialContext | null>(null);
 
 export const AppProvider: FC<ReactNode> = ({ children }) => {
-  const [cartItems, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const { cartItems } = state;
+
+  const addItem = (id: string) =>
+    dispatch({ type: ActionEnum.increment, payload: id });
+
+  const removeItem = (id: string) =>
+    dispatch({ type: ActionEnum.decrement, payload: id });
 
   return (
-    <AppContext.Provider value={{ cartItems }}>{children}</AppContext.Provider>
+    <AppContext.Provider value={{ cartItems, addItem, removeItem }}>
+      {children}
+    </AppContext.Provider>
   );
 };
 
-const useAppContext = () => {
+export const useAppContext = () => {
   return useContext(AppContext);
 };
