@@ -1,11 +1,14 @@
 import React from 'react';
 import './App.css';
+import Nav from './components/Nav/Nav';
+import Cart from './components/Cart/Cart';
 
 function App() {
   return (
-    <div className='App'>
-      <h1>Yo</h1>
-    </div>
+    <>
+      <Nav />
+      <Cart />
+    </>
   );
 }
 
