@@ -3,6 +3,7 @@ import React, {
   FC,
   ReactNode,
   useContext,
+  useEffect,
   useReducer,
 } from 'react';
 import { TCartItem } from '../types/types';
@@ -34,6 +35,17 @@ export const AppProvider: FC<ReactNode> = ({ children }) => {
 
   const removeItem = (id: string) =>
     dispatch({ type: ActionEnum.decrement, payload: id });
+
+  useEffect(() => {
+    const fetchItems = async () => {
+      const res = await fetch(
+        'https://course-api.com/react-useReducer-cart-project'
+      );
+      const data: TCartItem[] = await res.json();
+      dispatch({ type: ActionEnum.addAllItems, payload: data });
+    };
+    fetchItems();
+  }, []);
 
   return (
     <AppContext.Provider value={{ cartItems, addItem, removeItem }}>

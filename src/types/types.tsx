@@ -11,9 +11,10 @@ export type TCartItem = {
 export enum ActionEnum {
   increment = 'INCREMENT',
   decrement = 'DECREMENT',
+  addAllItems = 'ADD_ALL_ITEMS',
 }
 
 export type TAction = {
   type: ActionEnum;
-  payload: string;
+  payload: string | TCartItem[];
 };

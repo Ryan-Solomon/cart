@@ -1,7 +1,13 @@
 import React from 'react';
 import './cart.styles.css';
+import { useAppContext } from './../../context/appContext';
 
 const Cart = () => {
+  const { cartItems } = useAppContext()!;
+  const totalPrice = cartItems.reduce((acc, item) => {
+    return acc + JSON.parse(item.price);
+  }, 0);
+
   return (
     <main className='cart-container'>
       <h1>Your Cart</h1>
@@ -14,7 +20,7 @@ const Cart = () => {
 
       <section className='cart-total'>
         <div className='total'>
-          <h3>Total: $9999</h3>
+          <h3>Total: ${totalPrice}</h3>
         </div>
         <div className='btn'>
           <button>Clear Cart</button>

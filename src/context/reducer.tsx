@@ -22,6 +22,13 @@ export const reducer = (state: State, action: TAction): State => {
         }
       });
       return { cartItems: theNewCartItems };
+
+    case ActionEnum.addAllItems:
+      return {
+        ...state,
+        cartItems: action.payload as TCartItem[],
+      };
+
     default:
       return state;
   }
