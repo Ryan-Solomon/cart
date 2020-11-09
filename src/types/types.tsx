@@ -1,5 +1,3 @@
-import { StringLiteral } from 'typescript';
-
 export type TCartItem = {
   id: string;
   title: string;
@@ -12,9 +10,10 @@ export enum ActionEnum {
   increment = 'INCREMENT',
   decrement = 'DECREMENT',
   addAllItems = 'ADD_ALL_ITEMS',
+  clearAllItems = 'CLEAR_ALL_ITEMS',
 }
 
 export type TAction = {
   type: ActionEnum;
-  payload: string | TCartItem[];
+  payload?: string | TCartItem[];
 };

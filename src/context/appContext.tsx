@@ -14,6 +14,7 @@ type InitialContext = {
   cartItems: TCartItem[];
   addItem: (id: string) => void;
   removeItem: (id: string) => void;
+  clearItems: () => void;
 };
 
 export type State = {
@@ -36,6 +37,8 @@ export const AppProvider: FC<ReactNode> = ({ children }) => {
   const removeItem = (id: string) =>
     dispatch({ type: ActionEnum.decrement, payload: id });
 
+  const clearItems = () => dispatch({ type: ActionEnum.clearAllItems });
+
   useEffect(() => {
     const fetchItems = async () => {
       const res = await fetch(
@@ -48,7 +51,7 @@ export const AppProvider: FC<ReactNode> = ({ children }) => {
   }, []);
 
   return (
-    <AppContext.Provider value={{ cartItems, addItem, removeItem }}>
+    <AppContext.Provider value={{ cartItems, addItem, removeItem, clearItems }}>
       {children}
     </AppContext.Provider>
   );

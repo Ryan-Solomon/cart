@@ -29,6 +29,12 @@ export const reducer = (state: State, action: TAction): State => {
         cartItems: action.payload as TCartItem[],
       };
 
+    case ActionEnum.clearAllItems:
+      return {
+        ...state,
+        cartItems: [],
+      };
+
     default:
       return state;
   }

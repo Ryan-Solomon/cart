@@ -1,0 +1,25 @@
+.cart-item {
+  display: flex;
+  padding: 1rem;
+}
+
+.cart-item img {
+  width: 6rem;
+}
+
+.cart-item .item-details {
+  padding: 0.3rem;
+}
+
+.buttons button {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.buttons button:hover {
+  background-color: #333;
+  color: whitesmoke;
+  cursor: pointer;
+}
